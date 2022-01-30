@@ -1,0 +1,5 @@
+sqlalchemy[asyncio] 
+asyncpg 
+psycopg2-binary
+pyjwt
+flask

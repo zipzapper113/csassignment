@@ -1,0 +1,128 @@
+<html>
+    <head>
+        <style>
+            body{
+                font-family: cursive;
+            }
+            #menu ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                background-color: #333333;
+            }
+
+            #menu li {
+                float: left;
+            }
+
+            #menu li a {
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 16px;
+                text-decoration: none;
+            }
+
+            #menu li a:hover {
+                background-color: #111111;
+            }
+            #div1, #div2, #div3, #div4{
+                display: none;
+            }
+            #messageDialog {
+                display: none;
+                position: fixed;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                width: 200px;
+                height: 100px;
+                margin: auto;
+                text-align: center;
+                border: 1px solid black;
+                box-shadow: 0px 0px 4px 4px #888888;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="menu">
+            <ul>
+                <li><a href="javascript:showDiv(1)">Create User</a></li>
+                <li><a href="javascript:showDiv(2)">Create Tweet</a></li>
+                <li><a href="javascript:showDiv(3)">Get Tweets</a></li>
+                <li><a href="javascript:showDiv(4)">Delete Tweets</a></li>
+            </ul>
+        </div>
+        <div id="div1">
+            <label>username: </label> <br>
+            <input type="text" id="usernameToCreate"> <br>
+            <button onclick="createUser()">Create User</button>
+        </div>
+        <div id="div2">
+            <label>username: </label> <br>
+            <input type="text" id="usernameToPost">
+            <br>
+            <label>tweet: </label> <br>
+            <textarea id="tweetToPost"></textarea> <br>
+            <button onclick="createTweet()">Post Tweet</button>
+        </div>
+        <div id="div3">
+            <label>username</label><br>
+            <input type="text" id="usernameToGetTweet"><br>
+            <button onclick="getTweets()">Get Tweets</button>
+            <div>
+                <span id="tweetsCountArea"></span>
+                <ul id="tweetsShowArea">
+                </ul>
+            </div>
+        </div>
+        <div id="div4">
+            <label>username</label><br>
+            <input type="text" id="usernameToDeleteTweet"><br>
+            <button>Delete Tweets</button>
+        </div>
+        <div id="messageDialog">
+            <div id="messageDialogText">
+                sample popup
+            </div>
+            <button style="margin-top: 20px;" onclick="closePopup()">Close</button>
+        </div>
+        <script>
+            showDiv(1);
+            tweetsData = {
+                "tweets" : ["fdsafsd", "fsdafsdfs", "fsadfasd"],
+                "count" : 3
+            }
+            function showDiv(divId){
+                for(let i = 1; i < 5; i++)
+                    document.getElementById("div" + i).style.display = "none";
+                document.getElementById("div" + divId).style.display = "block";
+            }
+
+            function createUser(){
+                let usernameToCreate = document.getElementById("usernameToCreate").value;
+                document.getElementById("messageDialog").style.display = "block";
+            }
+            function createTweet(){
+
+            }
+            function getTweets(){
+                let tweetsShowArea = document.getElementById("tweetsShowArea")
+                tweetsCountArea.innerText = "No. of tweets: " + tweetsData["count"];
+                for(let tweet of tweetsData["tweets"]){
+                    let li = document.createElement("li");
+                    li.innerText = tweet
+                    tweetsShowArea.appendChild(li);
+                }
+            }
+            function deleteTweets(){
+
+            }
+            function closePopup(){
+                document.getElementById("messageDialog").style.display = "none";
+            }
+        </script>
+    </body>
+</html>
